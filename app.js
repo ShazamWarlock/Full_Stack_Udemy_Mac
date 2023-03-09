@@ -48,22 +48,6 @@
 
 
 
-//destructuring objects
-const user = {
-    email: 'vrishiriyer@gmail.com',
-    password: 'vrishir',
-    firstName: 'Vrishir',
-    lastName: 'Iyer',
-    born: 2001,
-    died: false,
-    bio: 'Vrishir Iyer is a software and electronics engineer',
-    city: 'Ahmedabad',
-    state: 'Gujarat'
-}
-
-const {email, firstName, lastName, bio} = user;
-
-const {born: birthyear, died: deathyear} = user;    //extracting variables to different variable names  
 
 
 
