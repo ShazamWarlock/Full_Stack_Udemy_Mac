@@ -1,54 +1,40 @@
-// const btn = document.querySelector("#button")
-
-// btn.onclick = function click(){
-//     console.log("You clicked me!")
-//     console.log("Congrats")
-// }
-
-// btn.onmouseenter = () => {
-//     console.log("Stop that right now")
-// }
-
-// const h1 = document.querySelector("h1")
-// h1.onclick = () => {
-//     console.log("Now why would you click a heading you idiot?")
-// }
-
-// const btn1 = document.querySelector("#button2")
-// btn1.addEventListener("mouseup", () =>{
-//     alert('You clicked the 2nd version!!')
+// document.querySelector('button').addEventListener('click',function(evt){
+//     console.log(evt)
 // })
 
+// const input = document.querySelector('input')
+// input.addEventListener('keydown',(e) => {
+//     console.log(e.key)
+//     console.log(e.code)
+// })
 
-//rgb exercise
-const button = document.querySelector("button")
-const h1 = document.querySelector("h1")
+// input.addEventListener('keyup',() => {
+//     console.log('Keyup')
+// })
 
-button.addEventListener("click", () => {
-    const newColor = randomColor()
-    document.body.style.backgroundColor = newColor
-    h1.innerText = newColor
+// window.addEventListener("keydown",(e) => {
+//     switch(e.code){
+//         case 'ArrowUp': console.log("UP!")
+//                         break;
+//         case 'ArrowDown': console.log("DOWN!")
+//                           break;
+//         case 'ArrowLeft': console.log("LEFT!")
+//                           break;
+//         case 'ArrowRight': console.log("RIGHT!")
+//                            break;
+//         default: console.log("NOT ARROW KEY!") 
+//     }
+// })
+
+const form =  document.querySelector("#shelterForm")
+const input = document.querySelector("#text")
+const list =  document.querySelector("#list")
+
+form.addEventListener("submit",(e) => {
+    e.preventDefault()
+    const catname = input.value
+    const newLi = document.createElement('LI')
+    newLi.innerText = catname
+    list.append(newLi)
+    input.value = " "
 })
-
-const randomColor = () => {
-    const r = Math.floor(Math.random() * 255)  
-    const g = Math.floor(Math.random() * 255)  
-    const b = Math.floor(Math.random() * 255)
-    return `rgb(${r},${g},${b})`
-}
-
-const btns = document.querySelectorAll("button")
-const h1s = document.querySelectorAll("h1")
-
-for (let button of btns){
-button.addEventListener("click",colorize)
-}
-for (let h1 of h1s){
-h1.addEventListener("click", colorize)
-
-}
-
-function colorize() {
-    this.style.backgroundColor = randomColor()
-    this.style.color = randomColor()
-}
