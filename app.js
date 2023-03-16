@@ -1,40 +1,81 @@
-// document.querySelector('button').addEventListener('click',function(evt){
-//     console.log(evt)
-// })
+const p1button = document.querySelector("#p1button")
+const p2button = document.querySelector("#p2button")
+const p1display = document.querySelector("#p1score")
+const p2display = document.querySelector("#p2score")
+const reset = document.querySelector("#reset")
+const winningscoreselect = document.querySelector("#playto")
+const winner = document.querySelector("#winner")
 
-// const input = document.querySelector('input')
-// input.addEventListener('keydown',(e) => {
-//     console.log(e.key)
-//     console.log(e.code)
-// })
+let p1score = 0
+let p2score = 0
+let winningScore = 5
+let isgameover = false
 
-// input.addEventListener('keyup',() => {
-//     console.log('Keyup')
-// })
 
-// window.addEventListener("keydown",(e) => {
-//     switch(e.code){
-//         case 'ArrowUp': console.log("UP!")
-//                         break;
-//         case 'ArrowDown': console.log("DOWN!")
-//                           break;
-//         case 'ArrowLeft': console.log("LEFT!")
-//                           break;
-//         case 'ArrowRight': console.log("RIGHT!")
-//                            break;
-//         default: console.log("NOT ARROW KEY!") 
-//     }
-// })
+function win(x,y){
+    if(x>y){
+        return x
+    }else{
+        return y
+    }
+}
 
-const form =  document.querySelector("#shelterForm")
-const input = document.querySelector("#text")
-const list =  document.querySelector("#list")
-
-form.addEventListener("submit",(e) => {
-    e.preventDefault()
-    const catname = input.value
-    const newLi = document.createElement('LI')
-    newLi.innerText = catname
-    list.append(newLi)
-    input.value = " "
+p1button.addEventListener('click', () => {
+    if(!isgameover){
+            p1score+=1
+            if(p1score == winningScore){
+                isgameover = true
+                p1display.classList.add('winner')
+                p2display.classList.add('loser')
+                p1button.disabled = true
+                p2button.disabled = true
+                declarewinner()
+            }
+            p1display.textContent = p1score
+    }
 })
+
+p2button.addEventListener('click', () => {
+    if(!isgameover){
+            p2score+=1
+            if(p2score == winningScore){
+                isgameover = true,
+                p1display.classList.add('winner')
+                p2display.classList.add('loser')
+                p1button.disabled = true
+                p2button.disabled = true
+                declarewinner()
+            }
+            p2display.textContent = p2score
+    }
+})
+
+function declarewinner(){
+    if(isgameover == true){
+        if(p1score>p2score){
+            winner.style.
+            winner.innerHTML = "Player 1 is the winner!"
+        }else{
+            winner.innerHTML = "Player 2 is the winner!"
+        }
+    }
+}
+
+winningscoreselect.addEventListener('change', function(){
+    winningScore = parseInt(this.value)
+    resetgame()
+})
+reset.addEventListener('click',resetgame)
+
+function resetgame(){
+    isgameover = false
+    p1score = 0
+    p2score = 0
+    p1display.textContent = 0
+    p2display.textContent = 0
+    p1display.classList.remove('winner','loser')
+    p2display.classList.remove('winner','loser')
+    p1button.disabled = false
+    p2button.disabled = false
+    winner.innerHTML = "Component"
+}
