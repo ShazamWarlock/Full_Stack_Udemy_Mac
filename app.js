@@ -1,115 +1,113 @@
-// // const req =  new XMLHttpRequest();
+// // // function hex(r,g,b) {
+// // // //     return '#' +  ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+// // // // }
 
-// // req.onload = () => {
-// //     console.log("IT LOADED!!"); 
-// //     console.log(this);
+// // // // hex(255, 100, 25);
+
+
+// // //factory function
+// // // function makecolor (r,g,b){
+// // //     const color = {};
+// // //     color.r = r;
+// // //     color.g = g;
+// // //     color.b = b;
+// // //     color.rgb =  function(){
+// // //         const {r,g,b} =  this;
+// // //         return `rgb(${r}, ${g}, ${b})`;
+// // //     };
+// // //     color.hex = function(){
+// // //         const {r,g,b} =  this;
+// // //         return '#' +  ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+// // //     }
+// // //     return color;
+// // // }
+
+// // // const firstColor = makecolor(35, 255, 150);
+// // // firstColor.hex()
+
+
+// // function Color(r,g,b){
+// //     this.r = r;
+// //     this.g = g;
+// //     this.b = b;
 // // }
 
-// // req.onerror = () => {
-// //     console.log("ERROR!");
-// //     console.log(this);
+// // Color.prototype.rgb = function(){
+// //     const {r,g,b} = this;
+// //     return `rgb(${r}, ${g}, ${b})`
 // // }
 
-// // req.open("GET", "https://swapi.dev/apipeople/1");
-
-// // req.send();
-
-
-
-// // fetch("https://swapi.dev/api/people/1")
-// // .then((res) => {
-// //     console.log("Resolved!",res)
-// //     return res.json()
-// // })
-// // .then((data) => {
-// //     console.log("JSON Resolved!",data)
-// //     return fetch("https://swapi.dev/api/people/2")
-// // })
-// // .then((res) => {
-// //     console.log("SECOND REQUEST RESOLVED!")
-// //     return res.json()
-// // })
-// // .then((data) => {
-// //     console.log("JSON Resolved!",data)
-// // })
-// // .catch((e) => {
-// //     console.log("Error!",e)
-// // })
-
-
-// // const loadStarWarspeople =  async () => {
-// //     try{
-// //         const res = await fetch("https://swapi.dev/api/people/1");
-// //         const data = await res.json();
-// //         console.log(data);
-// //         const res2 = await fetch("https://swapi.dev/api/people/2");
-// //         const data2 = await res2.json();
-// //         console.log(data2);
-// //     } catch(e){
-// //         console.log("ERROR!", e)
-// //     }
+// // Color.prototype.hex = function(){
+// //     const {r,g,b} =  this;
+// //     return '#' +  ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 // // }
 
-// // loadStarWarspeople()
+// // Color.prototype.rgba = function(a=1.0){
+// //     const {r,g,b,a} = this;
+// //     return `rgb(${r}, ${g}, ${b}, ${a})`
+// // }
 
+// // const color1 = new Color(40,255,60);
+// // const color2 = new Color(0,0,0); 
 
-// // axios.get("https://swapi.dev/api/people/1")
-// // .then((res) => {
-// //     console.log("RESPONSE!", res)
-// // })
-// // .catch((e) => {
-// //     console.log("ERROR!", e)
-// // });
-
-
-// // const loadStarWarspeople =  async (id) => {
-// //     try{
-// //         const res = await axios.get(`https://swapi.dev/api/people/${id}`);
-// //         console.log(res.data);
-// //     }catch(e){
-// //         console.log("ERROR!",e)
-// //     }
-// // };  
-
-// // loadStarWarspeople(3);
-
-// const button = document.querySelector('button')
-// const joke = document.querySelector("#jokes")
-// const getDadjoke = async () => {
-//     try{
-//         const config = { headers:  { Accept: 'application/json'}}
-//         const res = await axios.get('https://icanhazdadjoke.com/',config)
-//         return res.data.joke
-//     } catch(e){
-//         return 'No jokes available. Sorry!'
+// class Color{
+//     constructor(r,g,b,name){
+//        this.r = r;
+//        this.g = g;
+//        this.b = b;
+//        this.name = name;
 //     }
-// }
- 
-// const addNewJoke = async () => {
-//     const joketext = await getDadjoke()
-//     console.log(joketext)
-//     const newLI = document.createElement('LI')
-//     newLI.append(joketext)
-//     jokes.append(newLI)
-// }
+//     rgb(){
+//         const {r,g,b} = this;
+//         return `rgb(${r}, ${g}, ${b})`
+//     }
+//     hex(){
+//         const {r,g,b} =  this;
+//         return '#' +  ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+//     }
+//     hsl(){
+//         const{h,s,l} = this;
+//         return`hsl(${h},${s},${l})`;
+//     }
+//     fullySaturated(){
+//         const{h,l} = this;
+//         return `hsl(${h},100%,${l})`
+//     }
+//     opposite(){
+//         const{h,s,l} = this;
+//         const newHue =  (h + 180) % 360;
+//         return`hsl(${newHue},${s},${l})`;
+//     }
+//     calcHSL(){
+//         let {r,g,b} = this;
+//         r /= 255;
+//         g /= 255;
+//         b /= 255;
+//     }
+//     rgba(a=1.0){
+//         const {r,g,b,a} = this;
+//         return `rgb(${r}, ${g}, ${b}, ${a})`
+//     }
+// }   
 
-// button.addEventListener('click', addNewJoke)
-const form = document.querySelector("#searchForm");
-form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const searchTerm = form.elements.query.value;
-    const config = {params: {q : searchTerm}}
-    const res =  await axios.get(`https://api.tvmaze.com/search/shows?`, config);
-    makeImages(res.data);
-    form.elements.query.value = '';
-})
+class Pets{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    eats(){
+        return `${this.name} is eating!`;
+    }
+}
 
-const makeImages = (shows) => {
-    for(let result of shows){
-        if(result.show.image){
-            const img = document.createElement('IMG');
-            img.src = result.show.image.medium;
-            document.body.append(img);
-        }
+class Cats extends Pets{
+    meow(){
+        return `Meowww!`;
+    }
+}
+
+class Dog extends Pets{
+    woof(){
+        return `Woof!!`;
     }
 }
