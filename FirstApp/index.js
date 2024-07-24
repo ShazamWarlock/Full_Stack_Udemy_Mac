@@ -37,6 +37,15 @@ app.post('/cats', (req,res) => {
     res.send("This is a POST request for cats!! This is different than a GET request!!")
 })
 
+app.get('/search', (req, res) => {
+    // console.log(req.query)
+    const { q } = req.query;
+    if(!q){
+
+        res.send('Nothing found if nothing sent!')
+    }
+    res.send(`<h1>Search results for: ${q}</h1>`)
+})
 app.listen(8080, () => {
     console.log("LISTENING ON PORT 8080")
 })
