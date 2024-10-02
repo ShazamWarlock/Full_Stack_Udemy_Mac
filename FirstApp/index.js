@@ -1,52 +1,31 @@
-const express = require("express")
+const express = require('express')
 const app = express()
+const path = require('path')
 
-/* we use app.use to run something when any request is made */
+app.set('view engine', 'ejs')   //this will include the embedded javascript 
+app.set('views', path.join(__dirname,'/views'))
 
-// app.use((req,res) => {
-//     console.log("We got a new request!!")
-//     res.send("<h1 style='color:aquamarine;'>This is a new request!<h1>")  /* we use this to change the page layout*/
-// })
-
-// app.get('*', (req,res) => {
-//     // console.log("CATS REQUEST!!")
-//     res.send("I DO NOT know that path kind sir!")
-// })
-
-// app.get('/', (req,res) => {
-//     // console.log("CATS REQUEST!!")
-//     res.send("This is the home page!")
-// })
-
-app.get('/r/:subreddit/:postId', (req,res) => {
-    const {subreddit, postId} = req.params;
-    res.send(`<h1>Viewing ${postId} while browsing the ${subreddit} subreddit`)
+app.get('/', (req,res) => {
+    res.render('home.ejs')
 })
+
+app.get('/r/:subreddit', (req,res) => {
+    const {subreddit} = req.params
+    res.render('subreddit', { subreddit })
+})
+
 app.get('/cats', (req,res) => {
-    // console.log("CATS REQUEST!!")
-    res.send("MEOW!")
+    const cats = ['Socrates', 'Hercules', 'Ares', 'Zeus', 'Achilles', 'Mercury']
+    res.render('cats.ejs', { cats })
 })
 
-app.get('/dogs', (req,res) => {
-    // console.log("CATS REQUEST!!")
-    res.send("WOOF!")
+
+app.get('/rand', (req,res) => {
+    const num =  Math.floor(Math.random() * 10) + 1
+    res.render('random.ejs',{ num })    //key and value pair is the same 
+    // res.render('random.ejs',{ rand: num })    //key and value are different from each other
 })
 
-app.post('/cats', (req,res) => {
-    // console.log("CATS REQUEST!!")
-    res.send("This is a POST request for cats!! This is different than a GET request!!")
+app.listen(3000, () => {
+    console.log("Listening on Port 3000!!!")
 })
-
-app.get('/search', (req, res) => {
-    // console.log(req.query)
-    const { q } = req.query;
-    if(!q){
-
-        res.send('Nothing found if nothing sent!')
-    }
-    res.send(`<h1>Search results for: ${q}</h1>`)
-})
-app.listen(8080, () => {
-    console.log("LISTENING ON PORT 8080")
-})
-
